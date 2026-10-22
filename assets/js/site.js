@@ -359,6 +359,13 @@
     { selector: '.contact-cards .contact-card', effect: 'zoom', stagger: 90 },
     { selector: '.contact-brand', effect: 'up', delay: 150 },
     { selector: '.contact-map-wrap', effect: 'right', delay: 80 },
+    { selector: '.pl-method-head', effect: 'up' },
+    { selector: '.pl-how', effect: 'up', delay: 60 },
+    { selector: '.pl-step', effect: 'zoom', stagger: 90 },
+    { selector: '.pl-method-footer', effect: 'up', delay: 140 },
+    { selector: '.pl-benefits .pl-media', effect: 'zoom' },
+    { selector: '.pl-benefits-head', effect: 'left' },
+    { selector: '.pl-benefit', effect: 'up', stagger: 80 },
     { selector: '.site-footer-inner', effect: 'up' }
   ];
   var elements = [];

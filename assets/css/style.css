@@ -1789,6 +1789,13 @@ body::-webkit-scrollbar-thumb:hover {
 
 .faq-answer li::marker { color: var(--accent); }
 
+.faq-answer a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .faq-footer {
   width: 100%;
   max-width: 760px;
