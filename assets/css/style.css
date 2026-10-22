@@ -187,6 +187,11 @@ body::-webkit-scrollbar-thumb:hover {
   display: block;
 }
 
+.logo-link {
+  display: inline-block;
+  border-radius: 8px;
+}
+
 /* ===== HERO CONTENT ===== */
 .hero-content {
   display: flex;
