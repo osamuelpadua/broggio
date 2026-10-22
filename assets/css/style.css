@@ -241,7 +241,7 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  background: linear-gradient(115deg, #245A7D, #123448);
+  background: linear-gradient(115deg, #245A7D, #123448) border-box;
   border: 1px solid rgba(25, 68, 97, 0.1);
   box-shadow: 0 6px 18px rgba(18, 52, 72, 0.16), inset 0 1px rgba(255, 255, 255, 0.15);
   overflow: hidden;
@@ -673,7 +673,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* Variante champagne (destaques premium, ex.: cross-sell) */
 .btn-cta--accent {
-  background: linear-gradient(115deg, #D4B994, var(--accent-dark));
+  background: linear-gradient(115deg, #D4B994, var(--accent-dark)) border-box;
   color: var(--dark);
   border-color: rgba(168, 134, 92, 0.35);
   text-shadow: none;
@@ -943,7 +943,7 @@ body::-webkit-scrollbar-thumb:hover {
   right: max(24px, env(safe-area-inset-right));
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #245A7D, #123448);
+  background: linear-gradient(135deg, #245A7D, #123448) border-box;
   border-radius: 50%;
   display: flex;
   align-items: center;

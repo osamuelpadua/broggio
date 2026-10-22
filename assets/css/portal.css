@@ -157,7 +157,7 @@
 
 .pt-social-btn:hover {
   color: var(--white);
-  background: var(--gradient);
+  background: var(--gradient) border-box;
   border-color: transparent;
   transform: translateY(-2px);
 }
@@ -357,7 +357,7 @@
 
 .pt-mini:hover .pt-mini-arrow {
   color: var(--white);
-  background: var(--gradient);
+  background: var(--gradient) border-box;
   border-color: transparent;
   transform: translateX(3px);
 }
