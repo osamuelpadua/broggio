@@ -1,0 +1,449 @@
+/* ===== PORTAL =====
+   Página inicial: escolha entre Coluna, Acupuntura e Pilates.
+   Base visual em style.css (fontes, top-bar, rodapé). */
+.portal-page {
+  background: var(--paper);
+  min-height: 100vh;
+}
+
+.portal-page .top-bar {
+  height: 8px;
+}
+
+.pt-main {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 20px 72px;
+  overflow: hidden;
+}
+
+/* Grain suave sobre fundo claro */
+.pt-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pt-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1240px;
+  display: grid;
+  grid-template-columns: minmax(300px, 0.7fr) 1.3fr;
+  grid-template-areas:
+    ".      paths"
+    "header paths"
+    "social paths"
+    ".      paths";
+  grid-template-rows: 1fr auto auto 1fr;
+  align-items: center;
+  column-gap: 64px;
+  row-gap: 28px;
+}
+
+/* ===== HEADER ===== */
+.pt-header {
+  grid-area: header;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  opacity: 0;
+  animation: pt-fadeDown 0.65s var(--ease-out) 0.05s forwards;
+}
+
+.pt-logo {
+  height: 74px;
+  width: auto;
+  margin-bottom: 48px;
+}
+
+.pt-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+}
+
+.pt-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--sand), var(--accent));
+}
+
+.pt-title {
+  font-family: var(--font-display);
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+}
+
+.pt-subtitle {
+  margin-top: 12px;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--primary);
+}
+
+.pt-intro {
+  margin-top: 22px;
+  max-width: 370px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* ===== REDES SOCIAIS ===== */
+.pt-social {
+  grid-area: social;
+  width: 100%;
+  max-width: 370px;
+  margin-top: 8px;
+  padding-top: 26px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  opacity: 0;
+  animation: pt-fadeDown 0.65s var(--ease-out) 0.4s forwards;
+}
+
+.pt-social-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(25, 68, 97, 0.55);
+}
+
+.pt-social-links {
+  display: flex;
+  gap: 10px;
+}
+
+.pt-social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  background: rgba(201, 169, 130, 0.12);
+  border: 1px solid rgba(25, 68, 97, 0.14);
+  transition: color 0.22s, background 0.22s, border-color 0.22s, transform 0.22s;
+}
+
+.pt-social-btn:hover {
+  color: var(--white);
+  background: var(--gradient);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+/* ===== CAMINHOS ===== */
+.pt-paths {
+  grid-area: paths;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  width: 100%;
+}
+
+/* Cards principais: Coluna e Acupuntura */
+.pt-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4.6;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--primary);
+  box-shadow: 0 8px 32px rgba(18, 52, 72, 0.18);
+  text-decoration: none;
+  opacity: 0;
+  transition: transform 0.22s, box-shadow 0.22s;
+}
+
+.pt-card:nth-child(1) { animation: pt-fadeUp 0.55s var(--ease-out) 0.18s forwards; }
+.pt-card:nth-child(2) { animation: pt-fadeUp 0.55s var(--ease-out) 0.3s forwards; }
+
+/* Imagem do card: recorte real da doutora composto sobre o fundo temático
+   (coluna translúcida / meridianos de acupuntura) */
+.pt-card picture {
+  position: absolute;
+  inset: 0;
+}
+
+.pt-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform-origin: center top;
+  display: block;
+  transition: transform 0.5s var(--ease-out);
+}
+
+/* Degradê para leitura da legenda */
+.pt-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(18, 52, 72, 0.94) 0%, rgba(18, 52, 72, 0.62) 30%, transparent 58%);
+  pointer-events: none;
+}
+
+.pt-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(18, 52, 72, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pt-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 24px 26px;
+  color: var(--white);
+}
+
+.pt-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sand);
+  line-height: 1.3;
+}
+
+.pt-card-title {
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.pt-card-desc {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.pt-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 44px rgba(18, 52, 72, 0.28);
+}
+
+.pt-card:hover .pt-card-img {
+  transform: scale(1.04);
+}
+
+/* Card secundário: Pilates (faixa horizontal, menos destaque) */
+.pt-mini {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 20px 12px 12px;
+  border-radius: 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  text-decoration: none;
+  opacity: 0;
+  animation: pt-fadeUp 0.55s var(--ease-out) 0.42s forwards;
+  transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+}
+
+.pt-mini picture {
+  flex: 0 0 auto;
+}
+
+.pt-mini-img {
+  display: block;
+  width: 116px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.pt-mini-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pt-mini-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+}
+
+.pt-mini-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--primary);
+}
+
+.pt-mini-desc {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.pt-mini-arrow {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  border: 1px solid var(--border);
+  transition: color 0.22s, background 0.22s, border-color 0.22s, transform 0.22s;
+}
+
+.pt-mini:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 169, 130, 0.6);
+  box-shadow: 0 12px 32px rgba(18, 52, 72, 0.1);
+}
+
+.pt-mini:hover .pt-mini-arrow {
+  color: var(--white);
+  background: var(--gradient);
+  border-color: transparent;
+  transform: translateX(3px);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pt-fadeDown {
+  from { opacity: 0; transform: translateY(-22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pt-fadeUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .pt-main { padding-top: 40px; }
+  .pt-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "paths"
+      "social";
+    grid-template-rows: auto;
+    max-width: 560px;
+    row-gap: 32px;
+  }
+  .pt-header { align-items: center; text-align: center; }
+  .pt-logo { margin-bottom: 32px; }
+  .pt-eyebrow::after {
+    content: '';
+    width: 28px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(to left, var(--sand), var(--accent));
+  }
+  .pt-eyebrow { margin-bottom: 10px; }
+  .pt-title { font-size: 38px; }
+  .pt-subtitle { margin-top: 8px; font-size: 17px; }
+  .pt-intro { margin-top: 14px; max-width: 440px; font-size: 14px; line-height: 1.65; }
+  .pt-social {
+    justify-self: center;
+    align-items: center;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pt-paths { grid-template-columns: 1fr; gap: 14px; }
+  .pt-card { aspect-ratio: 10 / 10.5; border-radius: 18px; }
+  .pt-card-img { object-position: center 32%; }
+  .pt-caption { padding: 20px 20px 22px; }
+  .pt-card-title { font-size: 25px; }
+  .pt-mini-img { width: 96px; height: 72px; }
+  .pt-mini-title { font-size: 20px; }
+}
+
+@media (max-width: 480px) {
+  .pt-main { padding: 40px 16px 56px; }
+  .pt-logo { height: 60px; margin-bottom: 26px; }
+  .pt-eyebrow { font-size: 11px; }
+  .pt-title { font-size: 32px; }
+  .pt-subtitle { font-size: 15px; }
+  .pt-intro { font-size: 13.5px; }
+  .pt-container { row-gap: 28px; }
+  .pt-badge { top: 12px; left: 12px; width: 36px; height: 36px; }
+  .pt-mini { gap: 14px; padding-right: 14px; }
+  .pt-mini-desc { font-size: 12px; }
+  .pt-mini-arrow { width: 34px; height: 34px; }
+}
+
+/* Footer centralizado no portal */
+.portal-page .site-footer-inner {
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pt-header,
+  .pt-social,
+  .pt-card,
+  .pt-mini {
+    opacity: 1;
+    animation: none;
+  }
+}
