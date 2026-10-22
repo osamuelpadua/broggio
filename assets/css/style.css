@@ -1515,6 +1515,8 @@ body::-webkit-scrollbar-thumb:hover {
   margin-bottom: 28px;
 }
 
+.profile-meta span { white-space: nowrap; }
+
 .profile-body {
   display: flex;
   flex-direction: column;
@@ -1772,6 +1774,20 @@ body::-webkit-scrollbar-thumb:hover {
   line-height: 1.75;
   color: #55636A;
 }
+
+/* Respostas com lista (ex.: sinais de hérnia) */
+.faq-answer p:has(+ ul) { padding-bottom: 8px; }
+
+.faq-answer ul {
+  margin: 0;
+  padding: 0 22px 12px 42px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: #55636A;
+}
+
+.faq-answer li::marker { color: var(--accent); }
 
 .faq-footer {
   width: 100%;
